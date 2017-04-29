@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>
+      Football Scores
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content class="home" padding>
+  <h3>Hi {{username}}!</h3>
+  <h6>Choose the league and the year</h6>
+  <ion-list inset>
+        <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select [(ngModel)]="country">
+              <ion-option value="es" selected>Spain</ion-option>
+              <ion-option value="en">England</ion-option>
+              <ion-option value="de">Germany</ion-option>
+              <ion-option value="it">Italy</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Year</ion-label>
+            <ion-select [(ngModel)]="year">
+              <ion-option value="2016-17" selected>2016-17</ion-option>
+              <ion-option value="2015-16">2015-16</ion-option>
+              <ion-option value="2014-15">2014-15</ion-option>
+              <ion-option value="2013-14">2013-14</ion-option>
+              <ion-option value="2012-13">2012-13</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <div padding>
+        <button ion-button block (click)="getScores()">Refresh</button>
+    </div>
+    <ion-card *ngFor="let match of arrayMatches" (click)="goToDetails(match)">
+        <ion-card-header>
+            {{ match.cMatchDay }} ({{match.cMatchDate}})
+        </ion-card-header>
+        <ion-card-content>
+            {{ match.cLocalTeam }} {{ match.cLocalScore }} vs {{ match.cAwayTeam }} {{ match.cAwayScore }} 
+        </ion-card-content>
+    </ion-card>
+</ion-content>

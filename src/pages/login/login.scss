@@ -1,0 +1,53 @@
+page-login {
+    .login-content {
+      background: #FFA726;
+    }
+    .logo-col {
+      padding-top: 20px;
+      padding-bottom: -10px;
+    }
+    .img-logo{
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+ 
+    .login-box {
+      background: #E0E0E0;
+      padding: 0px 20px 0px 20px;
+    }
+ 
+    .ion-row {
+       align-items: center;
+       text-align: center;
+     }
+
+ 
+     .login-input {
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #ffffff;
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+         width: auto;
+     }
+ 
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+ 
+     .submit-btn {
+       background: #31AF91;
+       color: #ffffff;
+       border-radius: 30px !important;
+       border: 2px solid #31AF91;
+     }
+ 
+     .register-btn {
+       color: #000000;
+       font-size: 1.0em;
+     }
+
+}
