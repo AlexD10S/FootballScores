@@ -74573,15 +74573,47 @@ var MatchDetailPage = (function () {
         this.navCtrl = navCtrl;
         this.auth = auth;
         this.navParams = navParams;
+        /*
+          Array with all the teams->
+                0-28 for Spanish teams.
+                29-55 for English teams.
+                56-80 for German teams.
+                80-107 for Italian teams.
+         */
         this.arrayTeams = ["Barcelona", "Espanyol", "R. Madrid", "Atlético", "Sevilla", "Valencia", "Málaga",
             "Athletic", "Granada", "Celta", "R. Sociedad", "Deportivo", "Eibar", "Betis", "Sporting",
             "Las Palmas", "Osasuna", "Villarreal CF", "Alavés", "Club Deportivo Leganés",
             "Getafe", "Rayo", "Levante", "Elche CF", "UD Almería", "Córdoba", "Valladolid", "Mallorca",
-            "Zaragoza"];
+            "Zaragoza", "Chelsea", "Arsenal", "Tottenham Hotspur", "West Ham United", "Crystal Palace",
+            "Manchester United", "Manchester City", "Everton", "Liverpool", "West Bromwich Albion",
+            "Newcastle United", "Stoke City", "Sunderland", "Aston Villa", "Southampton",
+            "Leicester City", "Bournemouth", "Norwich", "Watford", "Swansea", "Burnley", "Hull City",
+            "Queens Park Rangers", "Fulham", "Cardiff City", "Reading", "Wigan Athletic",
+            "FC Bayern München", "Borussia Dortmund", "Bayer 04 Leverkusen", "Schalke 04",
+            "Eintracht Frankfurt", "Hamburger SV", "Borussia M'gladbach", "VfL Wolfsburg",
+            "1. FSV Mainz 05", "Werder Bremen", "1899 Hoffenheim", "FC Augsburg", "Hertha BSC",
+            "1. FC Köln", "FC Ingolstadt 04", "SV Darmstadt 98", "SC Freiburg", "RB Leipzig",
+            "Hannover 96", "VfB Stuttgart", "SC Paderborn 07", "Eintr. Braunschweig",
+            "1. FC Nürnberg", "Fortuna Düsseldorf", "Greuther Fürth", "Milan", "Inter",
+            "Lazio", "Roma", "Genoa", "Sampdoria", "Juventus", "Torino", "Napoli", "Atalanta",
+            "Chievo", "Fiorentina", "Udinese", "Sassuolo", "Palermo", "Empoli", "Bologna",
+            "Cagliari", "Crotone", "Pescara", "Carpi", "Frosinone", "Verona", "Parma", "Cesena",
+            "Catania", "Livorno"];
         this.arrayLogos = ["barcelona", "espanyol", "madrid", "atletico", "sevilla", "valencia", "malaga", "athletic",
             "granada", "celta", "sociedad", "deportivo", "eibar", "betis", "sporting", "palmas",
             "osasuna", "villareal", "alaves", "leganes", "getafe", "rayo", "levante", "elche",
-            "almeria", "cordoba", "valladolid", "mallorca", "zaragoza"];
+            "almeria", "cordoba", "valladolid", "mallorca", "zaragoza", "chelsea", "arsenal",
+            "tottenham", "westham", "crystal", "manunited", "mancity", "everton", "liverpool",
+            "westb", "newcastle", "stoke", "sunderland", "aston", "southampton", "leicester",
+            "bournemouth", "norwich", "watford", "swansea", "burnley", "hull", "qpr", "fulham",
+            "cardiff", "reading", "wigan", "bayer", "dortmund", "leverkusen", "schalke",
+            "frankfurt", "hamburg", "moench", "wolfsburg", "mainz", "bremen", "hoffein",
+            "augsburg", "herta", "koln", "ingolstadt", "darmstadt", "freiburg", "leipzig",
+            "hannover", "stuttgart", "padeborn", "braun", "nuremberg", "dussel", "furth",
+            "milan", "inter", "lazio", "roma", "genoa", "sampdoria", "juventus", "torino",
+            "napoli", "atalanta", "chievo", "fiorentina", "udinese", "sassuolo", "palermo",
+            "empoli", "bologna", "cagliari", "crotone", "pescara", "carpi", "frosinone",
+            "verona", "parma", "cesena", "catania", "livorno"];
         this.match = navParams.get('match');
         this.getRoute(this.match);
     }
@@ -74595,13 +74627,24 @@ var MatchDetailPage = (function () {
         var route;
         var num;
         if (match.cLeague == "es") {
-            route = "../../assets/logos/liga_";
-            this.routeCountry = "../../assets/logos/liga.png";
+            route = "assets/logos/liga/liga_";
+            this.routeCountry = "assets/logos/liga.png";
             num = 0;
         }
         else if (match.cLeague == "en") {
-            route = "../../assets/logos/premier_";
+            route = "assets/logos/premier/";
+            this.routeCountry = "assets/logos/premier.png";
             num = 28;
+        }
+        else if (match.cLeague == "de") {
+            route = "assets/logos/bundesliga/";
+            this.routeCountry = "assets/logos/bundesliga.png";
+            num = 55;
+        }
+        else if (match.cLeague == "it") {
+            route = "assets/logos/seriea/";
+            this.routeCountry = "assets/logos/serie.png";
+            num = 80;
         }
         var noLogoLocal = 0;
         var noLogoAway = 0;
@@ -74629,9 +74672,10 @@ MatchDetailPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-match-detail',template:/*ion-inline-start:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/'<!--\n  Generated template for the MatchDetail page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>\n      Football Scores\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="logout()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="home">\n  <div class="home-head" padding>\n  	<h1>{{match.cMatchDay}}</h1>\n    <img class="img-league" src="{{routeCountry}}">\n    <h3>{{match.cMatchDate}}</h3>\n  </div>\n  <ion-row>\n        <ion-col>\n        	<h4>{{match.cLocalTeam}}</h4>\n        	<img class="img-team" src="{{routeLocal}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cLocalScore}}</h1>\n        	</div>\n        </ion-col>\n        <ion-col>\n        	<h4>{{match.cAwayTeam}}</h4>\n        	<img class="img-team" src="{{routeAway}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cAwayScore}}</h1>\n        	</div>\n        </ion-col>\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _c || Object])
 ], MatchDetailPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=match-detail.js.map
 
 /***/ }),

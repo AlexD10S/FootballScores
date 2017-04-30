@@ -19,16 +19,47 @@ export class MatchDetailPage {
   public routeCountry;
   public routeLocal;
   public routeAway;
-
+  /*
+    Array with all the teams->
+          0-28 for Spanish teams.
+          29-55 for English teams.
+          56-80 for German teams.
+          80-107 for Italian teams.
+   */
   arrayTeams: string[] = ["Barcelona","Espanyol","R. Madrid","Atlético","Sevilla","Valencia","Málaga",
                           "Athletic","Granada","Celta","R. Sociedad","Deportivo","Eibar","Betis","Sporting",
                           "Las Palmas","Osasuna","Villarreal CF","Alavés","Club Deportivo Leganés",
                           "Getafe","Rayo","Levante","Elche CF","UD Almería","Córdoba","Valladolid","Mallorca",
-                          "Zaragoza"];
+                          "Zaragoza","Chelsea","Arsenal","Tottenham Hotspur","West Ham United","Crystal Palace",
+                          "Manchester United","Manchester City","Everton","Liverpool","West Bromwich Albion",
+                          "Newcastle United","Stoke City","Sunderland","Aston Villa","Southampton",
+                          "Leicester City","Bournemouth","Norwich","Watford","Swansea","Burnley","Hull City",
+                          "Queens Park Rangers","Fulham","Cardiff City","Reading","Wigan Athletic",
+                          "FC Bayern München","Borussia Dortmund","Bayer 04 Leverkusen","Schalke 04",
+                          "Eintracht Frankfurt","Hamburger SV","Borussia M'gladbach","VfL Wolfsburg",
+                          "1. FSV Mainz 05","Werder Bremen","1899 Hoffenheim","FC Augsburg","Hertha BSC",
+                          "1. FC Köln","FC Ingolstadt 04","SV Darmstadt 98","SC Freiburg","RB Leipzig",
+                          "Hannover 96","VfB Stuttgart","SC Paderborn 07","Eintr. Braunschweig",
+                          "1. FC Nürnberg","Fortuna Düsseldorf","Greuther Fürth","Milan","Inter",
+                          "Lazio","Roma","Genoa","Sampdoria","Juventus","Torino","Napoli","Atalanta",
+                          "Chievo","Fiorentina","Udinese","Sassuolo","Palermo","Empoli","Bologna",
+                          "Cagliari","Crotone","Pescara","Carpi","Frosinone","Verona","Parma","Cesena",
+                          "Catania","Livorno"];
   arrayLogos: string[] = ["barcelona","espanyol","madrid","atletico","sevilla","valencia","malaga","athletic",
                           "granada","celta","sociedad","deportivo","eibar","betis","sporting","palmas",
                           "osasuna","villareal","alaves","leganes","getafe","rayo","levante","elche",
-                          "almeria","cordoba","valladolid","mallorca","zaragoza"];
+                          "almeria","cordoba","valladolid","mallorca","zaragoza","chelsea","arsenal",
+                          "tottenham","westham","crystal","manunited","mancity","everton","liverpool",
+                          "westb","newcastle","stoke","sunderland","aston","southampton","leicester",
+                          "bournemouth","norwich","watford","swansea","burnley","hull","qpr","fulham",
+                          "cardiff","reading","wigan","bayer","dortmund","leverkusen","schalke",
+                          "frankfurt","hamburg","moench","wolfsburg","mainz","bremen","hoffein",
+                          "augsburg","herta","koln","ingolstadt","darmstadt","freiburg","leipzig",
+                          "hannover","stuttgart","padeborn","braun","nuremberg","dussel","furth",
+                          "milan","inter","lazio","roma","genoa","sampdoria","juventus","torino",
+                          "napoli","atalanta","chievo","fiorentina","udinese","sassuolo","palermo",
+                          "empoli","bologna","cagliari","crotone","pescara","carpi","frosinone",
+                          "verona","parma","cesena","catania","livorno"];
 
   constructor(public navCtrl: NavController,private auth: AuthService, public navParams: NavParams) {
   	this.match = navParams.get('match');
@@ -45,14 +76,26 @@ export class MatchDetailPage {
     var route:string;
     var num: number;
     if(match.cLeague=="es"){
-      route="../../assets/logos/liga_";
-      this.routeCountry="../../assets/logos/liga.png";
+      route="assets/logos/liga/liga_";
+      this.routeCountry="assets/logos/liga.png";
       num=0;
     }
     else if(match.cLeague=="en"){
-      route="../../assets/logos/premier_";
+      route="assets/logos/premier/";
+      this.routeCountry="assets/logos/premier.png";
       num=28;
     }
+    else if(match.cLeague=="de"){
+      route="assets/logos/bundesliga/";
+      this.routeCountry="assets/logos/bundesliga.png";
+      num=55;
+    }
+    else if(match.cLeague=="it"){
+      route="assets/logos/seriea/";
+      this.routeCountry="assets/logos/serie.png";
+      num=80;
+    }
+
     var noLogoLocal=0;
     var noLogoAway=0;
     for(var i:number=num;i<this.arrayTeams.length;i++){
