@@ -1,18 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-/*
-  Class for handle the User
-*/
-export class User {
-  name: string;
-  email: string;
- 
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-  }
-}
+
 
 /*
   Generated class for the AuthService provider.
@@ -23,7 +12,7 @@ export class User {
 @Injectable()
 export class AuthService {
 
-  currentUser: User;
+  currentUser: string;
  
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
@@ -32,7 +21,7 @@ export class AuthService {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
         let access = (credentials.password === "123" && credentials.email === "Alex");
-        this.currentUser = new User('Alex', 'alexfraga10@gmail.com');
+        this.currentUser = credentials.email;
         observer.next(access);
         observer.complete();
       });
@@ -51,7 +40,7 @@ export class AuthService {
     }
   }
  
-  public getUserInfo() : User {
+  public getUserInfo() : string {
     return this.currentUser;
   }
  

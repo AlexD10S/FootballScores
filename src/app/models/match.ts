@@ -5,10 +5,11 @@ export class Match {
     cAwayTeam: string;
     cLocalScore: string;
     cAwayScore: string;
+    cLeague: string;
 
  
     constructor(matchDay: string, matchDate: string,localTeam: string,awayTeam: string,
-        localScore: string, awayScore: string,){
+        localScore: string, awayScore: string, league: string){
          this.cMatchDay = matchDay;
          this.cMatchDate = matchDate;
          this.cLocalTeam = localTeam;
@@ -33,6 +34,9 @@ export class Match {
     }
     setAwayScore(awayScore: string){
         this.cAwayScore = awayScore;
+    }
+    setLeague(league: string){
+        this.cLeague = league;
     }
  
 }
