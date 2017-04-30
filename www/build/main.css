@@ -24763,6 +24763,11 @@ page-match-detail .img-league {
   height: 100px;
 }
 
+page-match-detail .img-team {
+  width: 150px;
+  height: 150px;
+}
+
 page-match-detail .home-head {
   background: #31AF91;
   color: #ffffff;

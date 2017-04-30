@@ -75,12 +75,17 @@ var LoginPage = (function () {
         this.loadingCtrl = loadingCtrl;
         this.registerCredentials = { email: '', password: '' };
     }
+    /*
+      The method createAccount go to the registerPage
+     */
     LoginPage.prototype.createAccount = function () {
         this.nav.push('RegisterPage');
     };
+    /*
+      Check if the login is correct with provider auth-service and go to HOmePage if is correct
+     */
     LoginPage.prototype.login = function () {
         var _this = this;
-        this.showLoading();
         this.auth.login(this.registerCredentials).subscribe(function (allowed) {
             if (allowed) {
                 _this.nav.setRoot('HomePage');
@@ -94,13 +99,6 @@ var LoginPage = (function () {
         }, function (error) {
             _this.showError(error);
         });
-    };
-    LoginPage.prototype.showLoading = function () {
-        this.loading = this.loadingCtrl.create({
-            content: 'Loading...',
-            dismissOnPageChange: true
-        });
-        this.loading.present();
     };
     /*
       Create an alert with a error.
@@ -119,7 +117,7 @@ var LoginPage = (function () {
 LoginPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/Users/alex/Documents/Projects/footballScores/src/pages/login/login.html"*/'<ion-content class="login-content" padding>\n  <ion-col text-center class="logo-col">\n    <h1>Football Results</h1>\n    <img class="img-logo" src="assets/User.png"/>\n  </ion-col>\n  <div class="login-box">\n    <form>\n      <ion-row>\n        <ion-col>\n          <ion-list inset>\n            \n            <ion-item class="login-input">\n              <ion-input type="text" placeholder="User" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>\n            </ion-item>\n            \n            <ion-item class="login-input"> \n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>\n            </ion-item>\n            \n          </ion-list>\n        </ion-col>\n      </ion-row>\n      \n      <ion-row>\n        <ion-col class="signup-col">\n          <button ion-button class="submit-btn" full block clear (click)="login()">Login</button>\n          <button ion-button class="register-btn" block clear (click)="createAccount()">Register</button>\n        </ion-col>\n      </ion-row>\n      \n    </form>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/alex/Documents/Projects/footballScores/src/pages/login/login.html"*/,
+        selector: 'page-login',template:/*ion-inline-start:"/Users/alex/Documents/Projects/footballScores/src/pages/login/login.html"*/'<ion-content class="login-content" padding>\n  <ion-col text-center class="logo-col">\n    <h1>Football Results</h1>\n    <img class="img-logo" ng-src="assets/User.png"/>\n  </ion-col>\n  <div class="login-box">\n    <form>\n      <ion-row>\n        <ion-col>\n          <ion-list inset>\n            \n            <ion-item class="login-input">\n              <ion-input type="text" placeholder="User" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>\n            </ion-item>\n            \n            <ion-item class="login-input"> \n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>\n            </ion-item>\n            \n          </ion-list>\n        </ion-col>\n      </ion-row>\n      \n      <ion-row>\n        <ion-col class="signup-col">\n          <button ion-button class="submit-btn" full block clear (click)="login()">Login</button>\n          <button ion-button class="register-btn" block clear (click)="createAccount()">Register</button>\n        </ion-col>\n      </ion-row>\n      \n    </form>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/alex/Documents/Projects/footballScores/src/pages/login/login.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
 ], LoginPage);

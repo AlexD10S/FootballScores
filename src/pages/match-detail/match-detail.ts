@@ -20,7 +20,9 @@ export class MatchDetailPage {
   public routeLocal;
   public routeAway;
   /*
-    Array with all the teams->
+    This array manually is only for logos, the array of the team: arrayTeams
+     and the name of the logo in the same position: arrayLogos.
+    Array with all the teams ->
           0-28 for Spanish teams.
           29-55 for English teams.
           56-80 for German teams.
@@ -71,10 +73,17 @@ export class MatchDetailPage {
       this.navCtrl.setRoot('LoginPage')
     });
  }
-
+ /*
+    getRoute get the routes for all the logos of the match:
+    league, localteam and awayteam
+  */
  public getRoute(match: Match){  
     var route:string;
+    // This variable is for improve the search in the array of teams
     var num: number;
+    /*
+      If the league is es/en/de/it change the logo and the url for the team's logo
+     */
     if(match.cLeague=="es"){
       route="assets/logos/liga/liga_";
       this.routeCountry="assets/logos/liga.png";
@@ -108,6 +117,9 @@ export class MatchDetailPage {
           noLogoAway=1;
        }
     }
+    /*
+       If there are a problem and don't find the logo-> put the logo of my team
+     */
     if(noLogoLocal==0){
       this.routeLocal = "../../assets/logos/liga_athletic.png";
     }

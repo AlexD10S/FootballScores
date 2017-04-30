@@ -47,6 +47,9 @@ export class HomePage {
         this.arrayMatches=[];
         this.arrayTeam=["All"];
         this.arrayMatchDays=["All"];
+        /*
+          Parse the json.
+         */
         this.scores.getScores(this.country,this.year).subscribe(
             data => {
                 this.foundScores = data.json()['rounds'];   
@@ -68,7 +71,7 @@ export class HomePage {
                     match.setAwayScore(m['score2']);
                     match.setLeague(this.country);
                     /*
-                      For the filters
+                      For the filters-> matchday and team
                      */
                      if(!this.arrayMatchDays.find(item => item === match.cMatchDay)){
                         this.arrayMatchDays.push(match.cMatchDay);
@@ -81,6 +84,9 @@ export class HomePage {
                   }
 
                 }
+                 /*
+                    Filtering the data if matchday and team are not All
+                  */
                 if(this.matchday != "All"){
                    this.arrayMatches=this.arrayMatches.filter(item => item.cMatchDay == this.matchday);
                 }
@@ -88,7 +94,6 @@ export class HomePage {
                    this.arrayMatches=this.arrayMatches.filter(item => item.cLocalTeam == this.team || 
                      item.cAwayTeam == this.team);
                 }
-                console.log('getScores completed')
               }
         );
 
@@ -102,11 +107,16 @@ export class HomePage {
       return (element.cLocalTeam == this.team); 
     } 
     */
+   /*
+     Go to the details of the match
+    */
   goToDetails(match) {  
     this.nav.push(MatchDetailPage, { match: match });
   }
     
-
+  /*
+     Method for logout
+   */
   public logout() {
     this.auth.logout().subscribe(succ => {
       this.nav.setRoot('LoginPage')

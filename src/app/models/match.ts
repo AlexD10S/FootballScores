@@ -1,3 +1,6 @@
+/*
+    Object to represent a Match.
+ */
 export class Match {
     cMatchDay: string;
     cMatchDate: string;
@@ -17,6 +20,9 @@ export class Match {
          this.cLocalScore = localScore;
          this.cAwayScore = awayScore;
     }
+    /*
+      Methods set to change the value
+     */
     setMatchDay(matchDay: string){
         this.cMatchDay = matchDay;
     }

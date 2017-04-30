@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';  
 import {Http} from '@angular/http';
-
+/**
+	Service for call the repository with the json
+ */
 @Injectable()
 export class ScoresService {  
     constructor(private http: Http) {

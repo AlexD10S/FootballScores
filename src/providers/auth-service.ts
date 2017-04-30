@@ -19,7 +19,8 @@ export class AuthService {
       return Observable.throw("Please insert credentials");
     } else {
       return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
+        // Only check ok is Alex and 123
+        //Implement with information in database
         let access = (credentials.password === "123" && credentials.email === "Alex");
         this.currentUser = credentials.email;
         observer.next(access);
@@ -32,14 +33,17 @@ export class AuthService {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      // At this point store the credentials to your backend!
+      // The same as login but without nothing implemented yet
       return Observable.create(observer => {
         observer.next(true);
         observer.complete();
       });
     }
   }
- 
+  /*
+    Get name of user.
+    It could be more info if I save more info for users(create class User and return user)
+   */
   public getUserInfo() : string {
     return this.currentUser;
   }

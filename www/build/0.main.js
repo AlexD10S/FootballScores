@@ -46,6 +46,9 @@ HomeModule = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Match; });
+/*
+    Object to represent a Match.
+ */
 var Match = (function () {
     function Match(matchDay, matchDate, localTeam, awayTeam, localScore, awayScore, league) {
         this.cMatchDay = matchDay;
@@ -55,6 +58,9 @@ var Match = (function () {
         this.cLocalScore = localScore;
         this.cAwayScore = awayScore;
     }
+    /*
+      Methods set to change the value
+     */
     Match.prototype.setMatchDay = function (matchDay) {
         this.cMatchDay = matchDay;
     };
@@ -141,6 +147,9 @@ var HomePage = (function () {
         this.arrayMatches = [];
         this.arrayTeam = ["All"];
         this.arrayMatchDays = ["All"];
+        /*
+          Parse the json.
+         */
         this.scores.getScores(this.country, this.year).subscribe(function (data) {
             _this.foundScores = data.json()['rounds'];
         }, function (err) { return console.error(err); }, function () {
@@ -159,7 +168,7 @@ var HomePage = (function () {
                     match.setAwayScore(m['score2']);
                     match.setLeague(_this.country);
                     /*
-                      For the filters
+                      For the filters-> matchday and team
                      */
                     if (!_this.arrayMatchDays.find(function (item) { return item === match.cMatchDay; })) {
                         _this.arrayMatchDays.push(match.cMatchDay);
@@ -170,6 +179,9 @@ var HomePage = (function () {
                     _this.arrayMatches.push(match);
                 }
             }
+            /*
+               Filtering the data if matchday and team are not All
+             */
             if (_this.matchday != "All") {
                 _this.arrayMatches = _this.arrayMatches.filter(function (item) { return item.cMatchDay == _this.matchday; });
             }
@@ -177,7 +189,6 @@ var HomePage = (function () {
                 _this.arrayMatches = _this.arrayMatches.filter(function (item) { return item.cLocalTeam == _this.team ||
                     item.cAwayTeam == _this.team; });
             }
-            console.log('getScores completed');
         });
     };
     /*
@@ -189,9 +200,15 @@ var HomePage = (function () {
       return (element.cLocalTeam == this.team);
     }
     */
+    /*
+      Go to the details of the match
+     */
     HomePage.prototype.goToDetails = function (match) {
         this.nav.push(__WEBPACK_IMPORTED_MODULE_5__match_detail_match_detail__["a" /* MatchDetailPage */], { match: match });
     };
+    /*
+       Method for logout
+     */
     HomePage.prototype.logout = function () {
         var _this = this;
         this.auth.logout().subscribe(function (succ) {
@@ -231,6 +248,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+/**
+    Service for call the repository with the json
+ */
 var ScoresService = (function () {
     function ScoresService(http) {
         this.http = http;

@@ -19,16 +19,21 @@ export class RegisterPage {
   registerCredentials = { email: '', password: '' };
  
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
-
+  /*
+    Method for goBack
+   */
   public goBack() {
     this.nav.push('LoginPage');
   }
- 
+  /*
+    Method only for show a message al press the boton.
+    Change when implement the register
+   */
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
       if (success) {
         this.createSuccess = true;
-        this.showPopup("Sorry", "Yo can't create accounts yet.");
+        this.showPopup("Sorry", "You can't create accounts yet.");
       } else {
         this.showPopup("Error", "Problem creating account.");
       }
@@ -37,7 +42,9 @@ export class RegisterPage {
         this.showPopup("Error", error);
       });
   }
- 
+  /*
+    Pop up with the information of the register-
+   */
   showPopup(title, text) {
     let alert = this.alertCtrl.create({
       title: title,

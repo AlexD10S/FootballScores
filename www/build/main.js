@@ -55682,7 +55682,8 @@ var AuthService = (function () {
         }
         else {
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
-                // At this point make a request to your backend to make a real check!
+                // Only check ok is Alex and 123
+                //Implement with information in database
                 var access = (credentials.password === "123" && credentials.email === "Alex");
                 _this.currentUser = credentials.email;
                 observer.next(access);
@@ -55695,13 +55696,17 @@ var AuthService = (function () {
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw("Please insert credentials");
         }
         else {
-            // At this point store the credentials to your backend!
+            // The same as login but without nothing implemented yet
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
                 observer.next(true);
                 observer.complete();
             });
         }
     };
+    /*
+      Get name of user.
+      It could be more info if I save more info for users(create class User and return user)
+     */
     AuthService.prototype.getUserInfo = function () {
         return this.currentUser;
     };
@@ -74314,6 +74319,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//import for fix the error with NgModule
 
 
 var AppModule = (function () {
@@ -74574,7 +74580,9 @@ var MatchDetailPage = (function () {
         this.auth = auth;
         this.navParams = navParams;
         /*
-          Array with all the teams->
+          This array manually is only for logos, the array of the team: arrayTeams
+           and the name of the logo in the same position: arrayLogos.
+          Array with all the teams ->
                 0-28 for Spanish teams.
                 29-55 for English teams.
                 56-80 for German teams.
@@ -74623,9 +74631,17 @@ var MatchDetailPage = (function () {
             _this.navCtrl.setRoot('LoginPage');
         });
     };
+    /*
+       getRoute get the routes for all the logos of the match:
+       league, localteam and awayteam
+     */
     MatchDetailPage.prototype.getRoute = function (match) {
         var route;
+        // This variable is for improve the search in the array of teams
         var num;
+        /*
+          If the league is es/en/de/it change the logo and the url for the team's logo
+         */
         if (match.cLeague == "es") {
             route = "assets/logos/liga/liga_";
             this.routeCountry = "assets/logos/liga.png";
@@ -74658,6 +74674,9 @@ var MatchDetailPage = (function () {
                 noLogoAway = 1;
             }
         }
+        /*
+           If there are a problem and don't find the logo-> put the logo of my team
+         */
         if (noLogoLocal == 0) {
             this.routeLocal = "../../assets/logos/liga_athletic.png";
         }
@@ -74670,12 +74689,11 @@ var MatchDetailPage = (function () {
 MatchDetailPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-match-detail',template:/*ion-inline-start:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/'<!--\n  Generated template for the MatchDetail page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>\n      Football Scores\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="logout()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="home">\n  <div class="home-head" padding>\n  	<h1>{{match.cMatchDay}}</h1>\n    <img class="img-league" src="{{routeCountry}}">\n    <h3>{{match.cMatchDate}}</h3>\n  </div>\n  <ion-row>\n        <ion-col>\n        	<h4>{{match.cLocalTeam}}</h4>\n        	<img class="img-team" src="{{routeLocal}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cLocalScore}}</h1>\n        	</div>\n        </ion-col>\n        <ion-col>\n        	<h4>{{match.cAwayTeam}}</h4>\n        	<img class="img-team" src="{{routeAway}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cAwayScore}}</h1>\n        	</div>\n        </ion-col>\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/,
+        selector: 'page-match-detail',template:/*ion-inline-start:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/'<!--\n  Generated template for the MatchDetail page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>\n      Football Scores\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="logout()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="home">\n  <div class="home-head" padding>\n  	<h1>{{match.cMatchDay}}</h1>\n    <img class="img-league" ng-src="{{routeCountry}}">\n    <h3>{{match.cMatchDate}}</h3>\n  </div>\n  <ion-row>\n        <ion-col>\n        	<h4>{{match.cLocalTeam}}</h4>\n        	<img class="img-team" ng-src="{{routeLocal}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cLocalScore}}</h1>\n        	</div>\n        </ion-col>\n        <ion-col>\n        	<h4>{{match.cAwayTeam}}</h4>\n        	<img class="img-team" ng-src="{{routeAway}}" padding>\n        	<div class="score" padding>\n        		<h1>{{match.cAwayScore}}</h1>\n        	</div>\n        </ion-col>\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/alex/Documents/Projects/footballScores/src/pages/match-detail/match-detail.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
 ], MatchDetailPage);
 
-var _a, _b, _c;
 //# sourceMappingURL=match-detail.js.map
 
 /***/ }),

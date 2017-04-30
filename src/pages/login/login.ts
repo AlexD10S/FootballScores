@@ -19,13 +19,16 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
  
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
-
+  /*
+    The method createAccount go to the registerPage
+   */
   public createAccount() {
     this.nav.push('RegisterPage');
   }
- 
+  /*
+    Check if the login is correct with provider auth-service and go to HOmePage if is correct
+   */
   public login() {
-    this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (allowed) {        
         this.nav.setRoot('HomePage');
@@ -41,13 +44,7 @@ export class LoginPage {
       });
   }
  
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Loading...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
-  }
+ 
  /*
    Create an alert with a error.
   */
