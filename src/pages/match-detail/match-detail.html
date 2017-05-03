@@ -21,20 +21,22 @@
 <ion-content class="home">
   <div class="home-head" padding>
   	<h1>{{match.cMatchDay}}</h1>
-    <img class="img-league" ng-src="{{routeCountry}}">
+    <ion-img class="img-league" src={{routeCountry}}></ion-img>
     <h3>{{match.cMatchDate}}</h3>
   </div>
   <ion-row>
         <ion-col>
         	<h4>{{match.cLocalTeam}}</h4>
-        	<img class="img-team" ng-src="{{routeLocal}}" padding>
+        	<!--<ion-img class="img-team" ng-src="{{routeLocal}}" padding></ion-img>-->
+          <ion-img class="img-team" src={{routeLocal}}></ion-img>
         	<div class="score" padding>
         		<h1>{{match.cLocalScore}}</h1>
         	</div>
         </ion-col>
         <ion-col>
         	<h4>{{match.cAwayTeam}}</h4>
-        	<img class="img-team" ng-src="{{routeAway}}" padding>
+        	<!--<ion-img class="img-team" ng-src="{{routeAway}}" padding></ion-img>-->
+          <ion-img class="img-team" src={{routeAway}}></ion-img>
         	<div class="score" padding>
         		<h1>{{match.cAwayScore}}</h1>
         	</div>
