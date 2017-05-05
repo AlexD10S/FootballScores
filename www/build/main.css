@@ -24761,11 +24761,13 @@ page-match-detail .score {
 page-match-detail .img-league {
   width: 100px;
   height: 100px;
+  background: #31AF91;
 }
 
 page-match-detail .img-team {
   width: 150px;
   height: 150px;
+  background: #FFA726;
 }
 
 page-match-detail .home-head {

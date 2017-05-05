@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, AlertController, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 
 /**
@@ -15,10 +15,9 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class LoginPage {
 
-  loading: Loading;
   registerCredentials = { email: '', password: '' };
  
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
   /*
     The method createAccount go to the registerPage
    */
@@ -49,7 +48,6 @@ export class LoginPage {
    Create an alert with a error.
   */
   showError(text) {
-    this.loading.dismiss();
  
     let alert = this.alertCtrl.create({
       title: 'Error!',
